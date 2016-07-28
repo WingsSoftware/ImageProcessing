@@ -1,0 +1,19 @@
+#!/bin/bash
+
+checkExitCode(){
+ if [ $? -ne 0 ]; then
+	 echo "Error"
+	 exit 1;
+ fi
+}
+
+BASEDIR=`dirname $0`
+. $BASEDIR/io.sh 1 0 1 "$@"
+
+echo "Inputs1: $INPUTS1"
+echo "Outputs1: $OUTPUTS1"
+
+python $BASEDIR/rotation.py $INPUTS1 $OUTPUTS1.png
+mv $OUTPUTS1.png $OUTPUTS1
+
+checkExitCode
